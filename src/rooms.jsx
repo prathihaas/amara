@@ -5,7 +5,7 @@ const RoomsList = ({ goto, booking, setBooking }) => {
     <div className="page">
       <section className="section-tight" style={{ background: 'var(--bg-warm)', paddingBottom: '2rem' }}>
         <div className="eyebrow">◦ {fmtDate(booking.checkIn)} — {fmtDate(booking.checkOut)} · {nights} {nights === 1 ? 'night' : 'nights'} · {booking.guests} {booking.guests === 1 ? 'guest' : 'guests'}</div>
-        <h1 style={{ fontSize: 56, marginTop: '0.5rem', fontWeight: 400 }}>
+        <h1 style={{ fontSize: 'clamp(2rem, 8vw, 3.5rem)', marginTop: '0.5rem', fontWeight: 400 }}>
           Choose <em style={{ fontStyle: 'italic', fontWeight: 300, color: 'var(--maroon)' }}>your room.</em>
         </h1>
         <div style={{ marginTop: '1.5rem' }}>
@@ -55,16 +55,16 @@ const RoomDetail = ({ id, goto, booking, setBooking }) => {
   const total = room.price * nights * booking.rooms;
   return (
     <div className="page">
-      <div style={{ padding: '1.5rem 3rem 0' }}>
+      <div style={{ padding: '1.5rem 1.25rem 0' }}>
         <button className="pill" onClick={() => goto('rooms')}>← All rooms</button>
       </div>
-      <section style={{ padding: '2rem 3rem 1rem' }}>
+      <section style={{ padding: '2rem 1.25rem 1rem' }}>
         <div className="eyebrow">◦ {room.view} view</div>
-        <h1 style={{ fontSize: 72, marginTop: '0.75rem', fontWeight: 400, lineHeight: 0.98 }}>{room.name}</h1>
+        <h1 style={{ fontSize: 'clamp(2.5rem, 10vw, 4.5rem)', marginTop: '0.75rem', fontWeight: 400, lineHeight: 0.98 }}>{room.name}</h1>
         <p style={{ fontSize: 18, marginTop: '0.75rem', maxWidth: '60ch', color: 'var(--ink-soft)' }}>{room.desc}</p>
       </section>
-      <section style={{ padding: '2rem 3rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '0.5rem', gridTemplateRows: '1fr 1fr', height: 520 }}>
+      <section style={{ padding: '2rem 1.25rem' }}>
+        <div className="room-img-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '0.5rem', gridTemplateRows: '1fr 1fr', height: 520 }}>
           <Img src={room.img} label={room.phLabel} style={{ gridRow: 'span 2', borderRadius: 10, height: '100%' }} />
           <Img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80" label="Bath" style={{ borderRadius: 10, height: '100%' }} />
           <Img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800&q=80" label="Lounge" style={{ borderRadius: 10, height: '100%' }} />
@@ -72,11 +72,11 @@ const RoomDetail = ({ id, goto, booking, setBooking }) => {
           <Img src="https://images.unsplash.com/photo-1615529162924-f8605388461d?w=800&q=80" label="View" style={{ borderRadius: 10, height: '100%' }} />
         </div>
       </section>
-      <section className="section" style={{ paddingTop: '3rem', paddingBottom: '3rem', display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: '3rem' }}>
+      <section className="section room-detail-body" style={{ paddingTop: '3rem', paddingBottom: '3rem', display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: '3rem' }}>
         <div>
           <div className="eyebrow">◦ In this room</div>
           <h2 style={{ fontSize: 36, marginTop: '0.75rem' }}>Everything you need. Nothing you don't.</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem 2rem', marginTop: '2rem' }}>
+          <div className="amenities-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem 2rem', marginTop: '2rem' }}>
             {[...room.amenities, 'Blackout linen', 'Organic bath', 'Turndown service', 'Daily newspaper'].map(a => (
               <div key={a} style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', padding: '0.75rem 0', borderBottom: '1px solid var(--line)' }}>
                 <Icon name="check" size={16} />
@@ -84,7 +84,7 @@ const RoomDetail = ({ id, goto, booking, setBooking }) => {
               </div>
             ))}
           </div>
-          <div style={{ marginTop: '3rem', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
+          <div className="room-stats-grid" style={{ marginTop: '3rem', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
             {[['bed', room.bed], ['size', room.size], ['users', 'Up to ' + room.max], ['view', room.view]].map(([ic, v]) => (
               <div key={v}>
                 <Icon name={ic} size={22} />
@@ -153,7 +153,7 @@ const BookCheckout = ({ id, goto, booking, setBooking }) => {
         <div>
           <div className="seal"><Icon name="check" size={34} stroke={2}/></div>
           <div className="eyebrow">◦ Confirmation · #AMR{Math.floor(Math.random()*90000+10000)}</div>
-          <h1 style={{ fontSize: 64, marginTop: '1rem', fontWeight: 400 }}>
+          <h1 style={{ fontSize: 'clamp(2.5rem, 9vw, 4rem)', marginTop: '1rem', fontWeight: 400 }}>
             We'll see you soon, <em style={{ fontStyle: 'italic', fontWeight: 300, color: 'var(--maroon)' }}>{guest.first || 'friend'}.</em>
           </h1>
           <p className="muted" style={{ maxWidth: '50ch', margin: '1rem auto 0', fontSize: 15 }}>
@@ -170,13 +170,13 @@ const BookCheckout = ({ id, goto, booking, setBooking }) => {
 
   return (
     <div>
-      <div style={{ padding: '1.5rem 3rem 0' }}>
+      <div style={{ padding: '1.5rem 1.25rem 0' }}>
         <button className="pill" onClick={() => step === 1 ? goto('rooms:' + room.id) : setStep(step - 1)}>← Back</button>
       </div>
       <div className="checkout">
         <div>
           <div className="eyebrow">◦ Step {step} of 2 · {step === 1 ? 'Guest details' : 'Payment'}</div>
-          <h1 style={{ fontSize: 52, marginTop: '0.5rem', fontWeight: 400 }}>
+          <h1 style={{ fontSize: 'clamp(1.75rem, 7vw, 3.25rem)', marginTop: '0.5rem', fontWeight: 400 }}>
             {step === 1 ? 'Tell us about yourself.' : 'A quick payment.'}
           </h1>
           <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1.5rem', marginBottom: '2rem' }}>

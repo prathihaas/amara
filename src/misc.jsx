@@ -6,11 +6,11 @@ const About = () => (
         <Logo variant="stacked" tone="dark"/>
       </div>
       <div className="eyebrow">◦ About</div>
-      <h1 style={{ fontSize: 88, marginTop: '1rem', fontWeight: 400, maxWidth: '14ch', lineHeight: 0.98, margin: '1rem auto 0' }}>
+      <h1 style={{ fontSize: 'clamp(2.5rem, 11vw, 5.5rem)', marginTop: '1rem', fontWeight: 400, maxWidth: '14ch', lineHeight: 0.98, margin: '1rem auto 0' }}>
         A quiet hotel, <em style={{ fontStyle: 'italic', fontWeight: 300, color: 'var(--maroon)' }}>shaped by Nizamabad.</em>
       </h1>
     </section>
-    <section style={{ padding: '2rem 3rem', display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '4rem', alignItems: 'start' }}>
+    <section className="about-body" style={{ padding: '2rem 1.25rem', display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '4rem', alignItems: 'start' }}>
       <div style={{ fontSize: 17, lineHeight: 1.7, color: 'var(--ink-soft)' }}>
         <p>Amara began the way most good things begin — an old building, a stubborn idea, and more courtyards than seemed necessary. Where the building used to hold a merchant's family, it now holds thirty-two rooms, three kitchens, a swimming pool that doesn't announce itself, and one very sleepy house cat named Burfi.</p>
         <p style={{ marginTop: '1.25rem' }}>We took our time. Olive-wood from the old doors was kept and re-cut. The Kadapa stone floors were polished, not replaced. The brass handles were never going anywhere.</p>
@@ -28,7 +28,7 @@ const About = () => (
           ['1', 'Very good, slightly lazy cat'],
         ].map(([n, l]) => (
           <div key={l} style={{ borderTop: '1px solid var(--line-strong)', paddingTop: '1.25rem' }}>
-            <div className="serif" style={{ fontSize: 64, fontWeight: 400, color: 'var(--maroon)', lineHeight: 1 }}>{n}</div>
+            <div className="serif" style={{ fontSize: 'clamp(2.5rem, 9vw, 4rem)', fontWeight: 400, color: 'var(--maroon)', lineHeight: 1 }}>{n}</div>
             <div className="muted" style={{ marginTop: '0.75rem', fontSize: 13, letterSpacing: '0.02em' }}>{l}</div>
           </div>
         ))}
@@ -42,7 +42,7 @@ const Gallery = () => (
   <div className="page">
     <section className="section-tight" style={{ paddingBottom: 0 }}>
       <div className="eyebrow">◦ Gallery</div>
-      <h1 style={{ fontSize: 64, marginTop: '0.5rem', fontWeight: 400 }}>
+      <h1 style={{ fontSize: 'clamp(2.5rem, 9vw, 4rem)', marginTop: '0.5rem', fontWeight: 400 }}>
         A walk around the place.
       </h1>
     </section>
@@ -60,11 +60,11 @@ const Contact = () => (
   <div className="page">
     <section className="section" style={{ paddingBottom: '2rem' }}>
       <div className="eyebrow">◦ Contact</div>
-      <h1 style={{ fontSize: 80, marginTop: '1rem', fontWeight: 400 }}>
+      <h1 style={{ fontSize: 'clamp(2.5rem, 10vw, 5rem)', marginTop: '1rem', fontWeight: 400 }}>
         Visit us, or <em style={{ fontStyle: 'italic', fontWeight: 300, color: 'var(--maroon)' }}>write to us.</em>
       </h1>
     </section>
-    <section style={{ padding: '1rem 3rem 3rem', display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '3rem' }}>
+    <section className="contact-body" style={{ padding: '1rem 1.25rem 3rem', display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '3rem' }}>
       <div style={{ background: 'var(--maroon)', color: 'var(--ivory)', borderRadius: 12, padding: '2.5rem', minHeight: 420, position: 'relative', overflow: 'hidden' }}>
         <div className="eyebrow" style={{ color: 'var(--gold)' }}>◦ Find us</div>
         <h3 style={{ fontSize: 32, marginTop: '0.75rem', color: 'var(--ivory)' }}>Hotel Amara</h3>

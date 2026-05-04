@@ -96,7 +96,7 @@ const Dine = ({ goto, tweaks }) => {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', gap: '2rem' }}>
           <div>
             <div className="eyebrow">◦ From our kitchen</div>
-            <h1 style={{ fontSize: 64, marginTop: '0.5rem', fontWeight: 400, lineHeight: 1 }}>
+            <h1 style={{ fontSize: 'clamp(2.5rem, 9vw, 4rem)', marginTop: '0.5rem', fontWeight: 400, lineHeight: 1 }}>
               Pick a bite.<br/>
               <em style={{ fontStyle: 'italic', fontWeight: 300, color: 'var(--maroon)' }}>Tap plus. That's it.</em>
             </h1>
@@ -142,7 +142,7 @@ const Dine = ({ goto, tweaks }) => {
 
       {cart.count > 0 && (
         <div style={{
-          position: 'sticky', bottom: '1rem', margin: '2rem 3rem 3rem',
+          position: 'sticky', bottom: '1rem', margin: '2rem 1rem 1rem',
           background: 'var(--ink)', color: 'var(--bg)',
           borderRadius: 999, padding: '0.75rem 0.75rem 0.75rem 1.5rem',
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
@@ -181,7 +181,7 @@ const FoodCheckout = ({ goto }) => {
         <div>
           <div className="seal"><Icon name="check" size={34} stroke={2}/></div>
           <div className="eyebrow">◦ Order #AMR-F{Math.floor(Math.random()*900+100)}</div>
-          <h1 style={{ fontSize: 60, marginTop: '1rem', fontWeight: 400 }}>
+          <h1 style={{ fontSize: 'clamp(2rem, 8vw, 3.75rem)', marginTop: '1rem', fontWeight: 400 }}>
             On its way — <em style={{ fontStyle: 'italic', fontWeight: 300, color: 'var(--maroon)' }}>25 minutes.</em>
           </h1>
           <p className="muted" style={{ maxWidth: '48ch', margin: '1rem auto 0' }}>
@@ -208,13 +208,13 @@ const FoodCheckout = ({ goto }) => {
 
   return (
     <div>
-      <div style={{ padding: '1.5rem 3rem 0' }}>
+      <div style={{ padding: '1.5rem 1.25rem 0' }}>
         <button className="pill" onClick={() => goto('dine')}>← Back to menu</button>
       </div>
       <div className="checkout">
         <div>
           <div className="eyebrow">◦ Almost ready</div>
-          <h1 style={{ fontSize: 52, marginTop: '0.5rem', fontWeight: 400 }}>Where should it go?</h1>
+          <h1 style={{ fontSize: 'clamp(1.75rem, 7vw, 3.25rem)', marginTop: '0.5rem', fontWeight: 400 }}>Where should it go?</h1>
 
           <div className="form-block" style={{ marginTop: '2rem' }}>
             <div>

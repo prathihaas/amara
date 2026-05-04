@@ -128,7 +128,7 @@ const FeaturedRooms = ({ goto }) => (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '2.5rem' }}>
       <div>
         <div className="eyebrow">◦ Where you'll sleep</div>
-        <h2 style={{ fontSize: 48, marginTop: '0.5rem' }}>Rooms & Suites</h2>
+        <h2 style={{ fontSize: 'clamp(1.5rem, 6vw, 3rem)', marginTop: '0.5rem' }}>Rooms & Suites</h2>
       </div>
       <button className="btn btn-ghost" onClick={() => goto('rooms')}>All rooms <Icon name="arrow" size={14}/></button>
     </div>
@@ -159,7 +159,7 @@ const DineTeaser = ({ goto }) => (
     <div className="grid grid-2" style={{ gap: '3rem', alignItems: 'center' }}>
       <div>
         <div className="eyebrow">◦ The kitchen</div>
-        <h2 style={{ fontSize: 52, marginTop: '0.5rem', maxWidth: '14ch' }}>
+        <h2 style={{ fontSize: 'clamp(1.75rem, 7vw, 3.25rem)', marginTop: '0.5rem', maxWidth: '14ch' }}>
           Dum biryani, slow-cooked <em style={{ fontStyle: 'italic', fontWeight: 300, color: 'var(--maroon)' }}>since breakfast.</em>
         </h2>
         <p className="muted" style={{ fontSize: 15, marginTop: '1.25rem', maxWidth: '46ch' }}>
@@ -187,14 +187,14 @@ const StorySnippet = () => (
         Amara was built the way our grandmothers built homes — with stone that knew the sun, wood that knew how to wait, and a courtyard left open for everything else.
       </h2>
       <div className="rule" style={{ maxWidth: 60, margin: '3rem auto' }}/>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
+      <div className="story-stats">
         {[
           ['32', 'Rooms & suites'],
           ['3', 'Restaurants'],
           ['1', 'Very old courtyard'],
         ].map(([n, l]) => (
           <div key={l}>
-            <div className="serif" style={{ fontSize: 56, fontWeight: 400, color: 'var(--maroon)' }}>{n}</div>
+            <div className="serif" style={{ fontSize: 'clamp(2rem, 7vw, 3.5rem)', fontWeight: 400, color: 'var(--maroon)' }}>{n}</div>
             <div className="eyebrow" style={{ marginTop: '0.5rem' }}>{l}</div>
           </div>
         ))}
@@ -204,8 +204,8 @@ const StorySnippet = () => (
 );
 
 const Footer = () => (
-  <footer style={{ background: 'var(--maroon)', color: 'var(--ivory)', padding: '4rem 3rem 2rem' }}>
-    <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 1fr', gap: '3rem', alignItems: 'start' }}>
+  <footer style={{ background: 'var(--maroon)', color: 'var(--ivory)', padding: '4rem 1.25rem 2rem' }}>
+    <div className="footer-grid">
       <div>
         <Logo surface="footer" tone="light" />
         <p style={{ fontSize: 13, opacity: 0.7, marginTop: '1.25rem', maxWidth: '36ch' }}>
