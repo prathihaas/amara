@@ -106,7 +106,7 @@
 }
 
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
+html, body { margin: 0; padding: 0; overflow-x: hidden; }
 body {
   font-family: 'Manrope', system-ui, sans-serif;
   background: var(--bg);
@@ -795,10 +795,25 @@ a { color: inherit; text-decoration: none; }
   .sidebar { position: relative; height: auto; flex-direction: row; padding: 1rem; }
   .sidebar-foot { display: none; }
   .nav { flex-direction: row; flex: 1; justify-content: flex-end; flex-wrap: wrap; }
+  .section { padding: var(--pad-section) 1.25rem; }
+  .section-tight { padding: 1.5rem 1.25rem; }
+  .topbar { padding: 1rem 1.25rem; }
+  .hero-fullbleed .content { padding: 4rem 1.25rem 2rem; }
   .hero-split { grid-template-columns: 1fr; }
-  .hero-edit { grid-template-columns: 1fr; }
+  .hero-split .left { padding: 2.5rem 1.25rem; }
+  .hero-split .right { min-height: 50vh; }
+  .hero-edit { grid-template-columns: 1fr; padding: 2rem 1.25rem; gap: 2rem; }
+  .gallery-grid { padding: 1.25rem; grid-template-columns: repeat(2, 1fr); }
   .grid-3, .grid-4, .food-grid { grid-template-columns: 1fr 1fr; }
   .category-grid { grid-template-columns: repeat(3, 1fr); }
-  .checkout { grid-template-columns: 1fr; }
+  .booking-bar { grid-template-columns: 1fr 1fr; }
+  .checkout { grid-template-columns: 1fr; padding: 1.5rem 1.25rem; }
   .field-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .grid-3, .grid-4, .food-grid, .grid-2 { grid-template-columns: 1fr; }
+  .category-grid { grid-template-columns: repeat(2, 1fr); }
+  .booking-bar { grid-template-columns: 1fr; }
+  .booking-bar .field { border-right: 0; border-bottom: 1px solid var(--line); }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
 }
