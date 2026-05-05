@@ -5,6 +5,7 @@ const ROOMS_V2 = window.ROOMS;
 const MENU_V2 = window.MENU;
 const CATEGORIES_V2 = window.CATEGORIES;
 const GALLERY_V2 = window.GALLERY;
+const BANQUETS_V2 = window.BANQUETS;
 
 // ───────────── Hero stories (typographic, no photos) ─────────────
 const STORIES = [
@@ -12,10 +13,10 @@ const STORIES = [
     n: '01',
     eyebrow: 'The Stay',
     headline: <>A boutique <em>hideaway</em> in old Nizamabad.</>,
-    sub: 'Twelve rooms. A private courtyard. Mornings that start with chai on the terrace and end with the muezzin echoing across the fort.',
+    sub: 'Thirty-four rooms across Standard, Deluxe, and Suite categories. Breakfast included, Wi-Fi throughout, and free parking — every night.',
     cta: 'Discover Rooms',
     target: 'rooms',
-    palette: 'maroon', // maroon bg, ivory text, gold accent
+    palette: 'maroon',
   },
   {
     n: '02',
@@ -24,23 +25,31 @@ const STORIES = [
     sub: 'A Hyderabadi kitchen rooted in dum & dakhni traditions. Rose, saffron, mace — the things our grandmothers measured by smell.',
     cta: 'Visit the Restaurant',
     target: 'dine',
-    palette: 'ivory', // ivory bg, maroon type, gold leaf
+    palette: 'ivory',
   },
   {
     n: '03',
+    eyebrow: 'The Pilgrimage',
+    headline: <>Basara, <em>forty kilometres</em> away.</>,
+    sub: 'Sri Gnana Saraswati Devi — one of only two Saraswati temples in India. A thousand-year-old shrine on the Godavari. Forty minutes from your room.',
+    cta: 'About Basara',
+    target: 'basara',
+    palette: 'gold',
+  },
+  {
+    n: '04',
     eyebrow: 'The Place',
     headline: <>Nizamabad, <em>unhurried</em>.</>,
     sub: 'Walk to the fort at dusk. Cardamom market on Sundays. We will draw you a map and pack you a flask.',
     cta: 'About Amara',
     target: 'about',
-    palette: 'gold', // deep maroon w/ gold mesh, ivory type
+    palette: 'maroon',
   },
 ];
 
 // ───────────── Tiny icons ─────────────
 const Ico = {
   search: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>,
-  bag: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 1 1 6 0v2"/></svg>,
   home: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4"><path d="M4 11 12 4l8 7v9H4v-9Z"/><path d="M9 20v-6h6v6"/></svg>,
   bed: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4"><path d="M3 18V8M21 18v-6H3"/><path d="M7 12V9h6v3"/></svg>,
   fork: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4"><path d="M7 4v7a3 3 0 0 0 3 3v6"/><path d="M7 4v3M11 4v3"/><path d="M16 4c-1 4-1 7 0 9h2v6"/></svg>,
@@ -184,15 +193,15 @@ const SectionHead = ({ num, title, lead, kicker }) => (
 
 // ───────────── Rooms ─────────────
 const RoomsSection = ({ onNav }) => {
-  const featured = ROOMS_V2[2]; // Heritage Suite
+  const featured = ROOMS_V2[2]; // Suite
   const others = ROOMS_V2.filter((r) => r.id !== featured.id);
   return (
     <section className="section">
       <SectionHead
         num="— 01"
         kicker="The Rooms"
-        title={<>Twelve rooms, <span className="italic">no two alike</span>.</>}
-        lead="Hand-restored interiors with olive-wood, brass, and handwoven Pochampally textiles. Rates include breakfast and a glass of something at sunset."
+        title={<>34 rooms. <span className="italic">Three categories.</span></>}
+        lead="Standard, Deluxe, and Suite. All rates include complimentary breakfast, free Wi-Fi, and free parking. No hidden charges."
       />
 
       <div className="cards">
@@ -251,155 +260,250 @@ const RoomsSection = ({ onNav }) => {
 const StatsBand = () => (
   <section style={{ padding: '0' }}>
     <div className="stats">
-      <div className="stat"><span className="num">12</span><span className="lbl">Rooms</span></div>
-      <div className="stat"><span className="num">1923</span><span className="lbl">Est.</span></div>
+      <div className="stat"><span className="num">34</span><span className="lbl">Rooms</span></div>
+      <div className="stat"><span className="num">3</span><span className="lbl">Banquet halls</span></div>
       <div className="stat"><span className="num">9.4</span><span className="lbl">Guest rating</span></div>
       <div className="stat"><span className="num">2.1</span><span className="lbl">km to fort</span></div>
     </div>
   </section>
 );
 
-// ───────────── Dine — restaurant menu (browse only, no ordering) ─────────────
-const DineSection = () => {
-  const [active, setActive] = React.useState('all');
-  const items = active === 'all' ? MENU_V2 : MENU_V2.filter((m) => m.cat === active);
+// ───────────── Dine — restaurant info only ─────────────
+const DineSection = () => (
+  <section className="section">
+    <SectionHead
+      num="— 02"
+      kicker="Telugu Theory · Level 2"
+      title={<>Andhra & Telangana, <span className="italic">on brass.</span></>}
+      lead="Telugu Theory on Level 2 — Andhra, Telangana, and Rayalaseema cooking, served slowly. Open every day for breakfast, lunch, and dinner."
+    />
+    <div className="restaurant-meta">
+      <div className="rmeta-cell">
+        <div className="lbl">Breakfast</div>
+        <div className="val">8:00 — 10:30</div>
+      </div>
+      <div className="rmeta-cell">
+        <div className="lbl">Lunch</div>
+        <div className="val">12:00 — 15:30</div>
+      </div>
+      <div className="rmeta-cell">
+        <div className="lbl">Dinner</div>
+        <div className="val">19:00 — 23:00</div>
+      </div>
+      <div className="rmeta-cell">
+        <div className="lbl">Reserve</div>
+        <div className="val">+91 8462 24 0000</div>
+      </div>
+    </div>
 
-  return (
-    <section className="section-flush" style={{ paddingTop: 'var(--pad-section)', paddingBottom: 'var(--pad-section)' }}>
-      <div style={{ padding: '0 var(--pad-x)' }}>
-        <SectionHead
-          num="— 02"
-          kicker="The Restaurant"
-          title={<>From the <span className="italic">dakhni</span> kitchen.</>}
-          lead="A 28-seat dining room and a six-seat chef's counter. Open 7am — 11pm. Reservations recommended for dinner."
-        />
-        <div className="restaurant-meta">
-          <div className="rmeta-cell">
-            <div className="lbl">Hours</div>
-            <div className="val">Daily · 7 — 23</div>
-          </div>
-          <div className="rmeta-cell">
-            <div className="lbl">Cuisine</div>
-            <div className="val">Hyderabadi · Dakhni</div>
-          </div>
-          <div className="rmeta-cell">
-            <div className="lbl">Dress</div>
-            <div className="val">Smart casual</div>
-          </div>
-          <div className="rmeta-cell">
-            <div className="lbl">Reserve</div>
-            <div className="val">+91 8462 24 0000</div>
-          </div>
+    <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+      <a href="https://telugu-theory.vercel.app" target="_blank" rel="noopener"
+        className="btn btn-maroon" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+        Visit Telugu Theory {Ico.arrow}
+      </a>
+    </div>
+
+    <div style={{
+      marginTop: '2rem',
+      padding: '1rem 1.25rem',
+      background: 'var(--ivory-card)',
+      borderRadius: 12,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      gap: '1rem',
+      flexWrap: 'wrap',
+    }}>
+      <div>
+        <div className="eyebrow" style={{ marginBottom: '0.25rem' }}>Also on Level 1</div>
+        <div className="h-card" style={{ fontSize: '1.1rem' }}>503 Coffeeshop</div>
+        <p className="muted" style={{ fontSize: 13, margin: '0.25rem 0 0' }}>Single-origin coffee · craft tea · all-day drinks · 8 am — 11 pm</p>
+      </div>
+      <a href="https://five-zero-three.vercel.app" target="_blank" rel="noopener"
+        className="btn btn-sm" style={{
+          textDecoration: 'none', border: '1px solid var(--line)',
+          padding: '0.5rem 1rem', borderRadius: 8, fontSize: 13, whiteSpace: 'nowrap',
+          display: 'inline-flex', alignItems: 'center', gap: '0.35rem',
+        }}>
+        Visit 503 {Ico.arrow}
+      </a>
+    </div>
+  </section>
+);
+
+// ───────────── Basara Temple ─────────────
+const BASARA_REASONS = [
+  {
+    ico: 'sun',
+    title: 'Vidyarambham & Aksharabhyasam',
+    body: 'The most auspicious place in India for a child\'s first encounter with letters. On Vijayadasami (Dussehra), families travel from every corner of Andhra, Telangana, and beyond to have their child write their first syllable in the presence of the Goddess of Knowledge. For many Telugu families, this ceremony at Basara carries the weight of a birth — it is the moment a child\'s life as a learner begins.',
+  },
+  {
+    ico: 'book',
+    title: 'Students Before Competitive Exams',
+    body: 'Before board exams, NEET, JEE, UPSC, CA Finals, and every examination that shapes a young life in India, students make the journey to Basara. They come in buses, in college groups, alone. They touch the feet of the Goddess, sit by the Godavari, and leave quieter and steadier than they arrived. The temple receives thousands of exam-bound students every February, March, and April.',
+  },
+  {
+    ico: 'flame',
+    title: 'Dussehra — The Great Gathering',
+    body: 'On and around Vijayadasami, Basara becomes one of the largest pilgrimages in South India. Over ten lakh people converge on this small village across ten days. The Godavari fills with diyas at dusk. The air carries turmeric and marigold. The Goddess\'s sanctum sees continuous darshan from before dawn until well past midnight. Roads from Hyderabad, Warangal, Nagpur, and Adilabad carry pilgrims in a steady stream.',
+  },
+  {
+    ico: 'bowl',
+    title: 'Vasant Panchami — The Goddess\'s Own Day',
+    body: 'In January or February, Vasant Panchami marks the onset of spring and Saraswati\'s own festival. Books, musical instruments, paintbrushes, and tools are consecrated before her. Artists, musicians, teachers, and scholars make the pilgrimage. The mood is quieter than Dussehra — more intimate, more personal. This is when the devout come not in crowds but in families, with something specific to ask.',
+  },
+  {
+    ico: 'heart',
+    title: 'The Godavari Ghats',
+    body: 'The river here is wide and unhurried. The stone ghats are old and worn smooth by generations of bare feet. Morning puja at the river — oil lamp, flowers, a priest\'s bell rising through the mist — is available to anyone who arrives early enough. The Godavari at Basara is considered especially sacred because it flows at the feet of the Goddess herself. Ritual bathing here before darshan is a custom older than the temple records.',
+  },
+  {
+    ico: 'leaf',
+    title: 'Year-Round Pilgrimage from Across India',
+    body: 'The temple is open every day, and pilgrims come every day. Families from Hyderabad (3 hours), Warangal (2.5 hours), Pune, Nagpur, and the wider Telugu diaspora treat Basara as a non-negotiable annual visit. Weekend crowds are significant. For all of them, Nizamabad — the nearest city with hotels, restaurants, and transport connections — is the natural overnight base. Which makes Amara the natural place to stay.',
+  },
+];
+
+const BasaraSection = () => (
+  <section className="section-flush" id="basara" style={{ background: 'var(--bone)', paddingTop: 'var(--pad-section)', paddingBottom: 'var(--pad-section)' }}>
+    <div style={{ padding: '0 var(--pad-x)' }}>
+      <SectionHead
+        num="— 03"
+        kicker="The Pilgrimage · Basara · 40 km"
+        title={<>A temple that <span className="italic">only India</span> can keep.</>}
+        lead="Sri Gnana Saraswati Devi at Basara — one of only two Saraswati temples in the entire country — draws hundreds of thousands every year. It sits forty kilometres from this hotel, on the southern bank of the Godavari."
+      />
+    </div>
+
+    {/* Opening chapter */}
+    <div className="chapter" style={{ padding: '0 var(--pad-x)', marginBottom: '2.5rem' }}>
+      <div className="img" style={{
+        backgroundImage: `url(https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1200&q=80)`,
+        background: 'linear-gradient(135deg, var(--maroon-deep) 0%, #5a1a10 50%, #2d1a00 100%)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        minHeight: 240, borderRadius: 14,
+      }}>
+        <div style={{ textAlign: 'center', color: 'var(--gold)', padding: '2rem' }}>
+          <div style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 'clamp(2.5rem, 8vw, 4rem)', lineHeight: 1, marginBottom: '0.5rem' }}>Sri Gnana</div>
+          <div style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(2rem, 6vw, 3.2rem)', lineHeight: 1, color: 'var(--ivory)' }}>Saraswati Devi</div>
+          <div style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase', marginTop: '1rem', color: 'rgba(244,234,215,0.6)' }}>Basara · Godavari · Telangana</div>
         </div>
       </div>
+      <div className="text" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <p>
+          The river Godavari bends gently at Basara. On its southern bank sits a shrine that students,
+          parents, scholars, and pilgrims have found their way to for over a thousand years. The Goddess
+          here is Saraswati — not the consort, not the secondary deity, but the presiding divinity in her
+          own right: <em>Gnana Saraswati</em>, the goddess of knowledge, speech, and all learning.
+        </p>
+        <p className="muted">
+          India has exactly two temples where Saraswati is the primary deity. One is in the valley
+          of Kashmir — the ancient Sharda Peeth, now largely inaccessible. The other is here, on
+          the Godavari, forty kilometres from the centre of Nizamabad.
+        </p>
+        <p className="muted">
+          This is the only functioning Saraswati temple in the country where devotees can take darshan
+          every single day of the year. That fact alone explains everything about why they come.
+        </p>
+      </div>
+    </div>
 
-      <div className="cat-tabs">
-        {CATEGORIES_V2.map((c) => (
-          <button
-            key={c.id}
-            className={`cat-tab ${active === c.id ? 'active' : ''}`}
-            onClick={() => setActive(c.id)}
-          >
-            {c.name}
-          </button>
+    {/* Key facts */}
+    <div className="stats">
+      <div className="stat"><span className="num">40</span><span className="lbl">km from Amara</span></div>
+      <div className="stat"><span className="num">2</span><span className="lbl">Saraswati temples in India</span></div>
+      <div className="stat"><span className="num">10L+</span><span className="lbl">pilgrims each Dussehra</span></div>
+      <div className="stat"><span className="num">45</span><span className="lbl">min by road</span></div>
+    </div>
+
+    {/* Six reasons */}
+    <div style={{ padding: '2.5rem var(--pad-x) 0' }}>
+      <div className="eyebrow" style={{ marginBottom: '1.25rem' }}>Why they come</div>
+      <div className="basara-reasons" style={{ display: 'grid', gap: '0.85rem' }}>
+        {BASARA_REASONS.map((r) => (
+          <div key={r.title} style={{
+            background: '#fff',
+            border: '1px solid var(--line)',
+            borderRadius: 14,
+            padding: '1.25rem',
+            display: 'flex',
+            gap: '1rem',
+            alignItems: 'flex-start',
+          }}>
+            <div style={{
+              background: 'var(--maroon)', color: 'var(--gold)',
+              borderRadius: 10, padding: '0.65rem',
+              flexShrink: 0, width: 42, height: 42,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              {Ico[r.ico]}
+            </div>
+            <div>
+              <h3 className="h-card" style={{ fontSize: '1.1rem', marginBottom: '0.4rem' }}>{r.title}</h3>
+              <p className="muted" style={{ fontSize: 14, lineHeight: 1.6, margin: 0 }}>{r.body}</p>
+            </div>
+          </div>
         ))}
       </div>
+    </div>
 
-      <div className="menu-grid">
-        {items.map((m, idx) => {
-          const featured = m.featured && idx < 4;
-          if (featured) {
-            return (
-              <div className="featured-dish dish" key={m.id}>
-                <div className="badge">House Favourite</div>
-                <div
-                  className="img"
-                  style={{
-                    backgroundImage: `url(https://images.unsplash.com/${getDishImage(m)}?w=900&q=80)`,
-                  }}
-                />
-                <div className="body">
-                  <div className={m.veg ? 'veg' : 'nonveg'}>
-                    <div className="veg-dot" style={{ position: 'static', display: 'inline-flex' }} />
-                  </div>
-                  <h3 className="name">{m.name}</h3>
-                  <p className="sub">{m.sub}</p>
-                  <div className="foot">
-                    <span className="price"><em>₹</em>{m.price}</span>
-                  </div>
-                </div>
-              </div>
-            );
-          }
-          return (
-            <div className={`dish ${m.veg ? 'veg' : 'nonveg'}`} key={m.id}>
-              <div
-                className="img"
-                style={{
-                  backgroundImage: `linear-gradient(135deg, rgba(80,20,30,0.05), rgba(207,148,79,0.15)), url(https://images.unsplash.com/${getDishImage(m)}?w=600&q=80)`,
-                }}
-              >
-                <div className="veg-dot" />
-              </div>
-              <div className="body">
-                <h3 className="name">{m.name}</h3>
-                <p className="sub">{m.sub}</p>
-                <div className="foot">
-                  <span className="price"><em>₹</em>{m.price}</span>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+    {/* Practical info panel */}
+    <div style={{
+      margin: '2.5rem var(--pad-x) 0',
+      background: 'var(--maroon)', color: 'var(--ivory)',
+      borderRadius: 16, padding: '1.75rem 1.5rem',
+    }}>
+      <div className="eyebrow eyebrow-light" style={{ marginBottom: '1.25rem' }}>Planning your Basara visit from Amara</div>
+      <div style={{ display: 'grid', gap: '1.25rem', gridTemplateColumns: '1fr 1fr' }}>
+        <div>
+          <div className="eyebrow" style={{ color: 'var(--gold)', marginBottom: 6 }}>Distance</div>
+          <div className="h-card" style={{ color: 'var(--ivory)', fontSize: '1rem' }}>40 km · ~45 min</div>
+          <p style={{ fontSize: 13, color: 'rgba(244,234,215,0.7)', margin: '4px 0 0', lineHeight: 1.45 }}>By road from Hotel Amara. Cabs available from the hotel any time of day.</p>
+        </div>
+        <div>
+          <div className="eyebrow" style={{ color: 'var(--gold)', marginBottom: 6 }}>Temple Hours</div>
+          <div className="h-card" style={{ color: 'var(--ivory)', fontSize: '1rem' }}>4:30 am — 8:30 pm</div>
+          <p style={{ fontSize: 13, color: 'rgba(244,234,215,0.7)', margin: '4px 0 0', lineHeight: 1.45 }}>First aarti at 5:00 am. Darshan queues are shortest before 7:00 am and after 6:00 pm.</p>
+        </div>
+        <div>
+          <div className="eyebrow" style={{ color: 'var(--gold)', marginBottom: 6 }}>Best Seasons</div>
+          <div className="h-card" style={{ color: 'var(--ivory)', fontSize: '1rem' }}>Oct–Nov & Jan–Feb</div>
+          <p style={{ fontSize: 13, color: 'rgba(244,234,215,0.7)', margin: '4px 0 0', lineHeight: 1.45 }}>Dussehra (Vijayadasami) and Vasant Panchami. Peak festival crowds; peak atmosphere.</p>
+        </div>
+        <div>
+          <div className="eyebrow" style={{ color: 'var(--gold)', marginBottom: 6 }}>What to Wear</div>
+          <div className="h-card" style={{ color: 'var(--ivory)', fontSize: '1rem' }}>Traditional preferred</div>
+          <p style={{ fontSize: 13, color: 'rgba(244,234,215,0.7)', margin: '4px 0 0', lineHeight: 1.45 }}>Sarees, dhotis, salwar kameez. Shoulders and knees covered. Footwear removed at the entrance.</p>
+        </div>
+        <div>
+          <div className="eyebrow" style={{ color: 'var(--gold)', marginBottom: 6 }}>Also Nearby</div>
+          <div className="h-card" style={{ color: 'var(--ivory)', fontSize: '1rem' }}>Godavari Ghats</div>
+          <p style={{ fontSize: 13, color: 'rgba(244,234,215,0.7)', margin: '4px 0 0', lineHeight: 1.45 }}>Ritual bathing in the Godavari before darshan is a centuries-old custom. The ghats are a five-minute walk from the temple.</p>
+        </div>
+        <div>
+          <div className="eyebrow" style={{ color: 'var(--gold)', marginBottom: 6 }}>Entry</div>
+          <div className="h-card" style={{ color: 'var(--ivory)', fontSize: '1rem' }}>Free · Always open</div>
+          <p style={{ fontSize: 13, color: 'rgba(244,234,215,0.7)', margin: '4px 0 0', lineHeight: 1.45 }}>No entry fee for darshan. Special queue tickets available on the temple website for busy days.</p>
+        </div>
       </div>
-
-      <div style={{ textAlign: 'center', marginTop: '1rem' }}>
-        <button className="btn btn-maroon">Reserve a Table {Ico.arrow}</button>
+      <div style={{ marginTop: '1.75rem', paddingTop: '1.25rem', borderTop: '1px solid rgba(244,234,215,0.15)', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+        <a href="tel:+918462240000" className="btn btn-gold" style={{ textDecoration: 'none' }}>
+          Ask us to arrange a cab {Ico.arrow}
+        </a>
+        <a href="#rooms" className="btn btn-outline-light" style={{ textDecoration: 'none' }}>
+          Book your stay {Ico.arrow}
+        </a>
       </div>
-    </section>
-  );
-};
-
-// Pick a thematic Unsplash photo per dish
-function getDishImage(m) {
-  const map = {
-    m1: 'photo-1668236543090-82eba5ee5976',
-    m2: 'photo-1668236543090-82eba5ee5976',
-    m3: 'photo-1565557623262-b51c2513a641',
-    m4: 'photo-1525351484163-7529414344d8',
-    m5: 'photo-1631452180519-c014fe946bc7',
-    m6: 'photo-1631452180519-c014fe946bc7',
-    m7: 'photo-1563379091339-03b21ab4a4f8',
-    m8: 'photo-1626500155401-25e7a9eaf2a3',
-    m9: 'photo-1631452180519-c014fe946bc7',
-    m10: 'photo-1565557623262-b51c2513a641',
-    m11: 'photo-1626500155401-25e7a9eaf2a3',
-    m12: 'photo-1626777553635-15edd7e8e7c0',
-    m13: 'photo-1599487488170-d11ec9c172f0',
-    m14: 'photo-1599487488170-d11ec9c172f0',
-    m15: 'photo-1551024506-0bccd828d307',
-    m16: 'photo-1543353071-873f17a7a088',
-    m17: 'photo-1626776877737-2b14db717a72',
-    m18: 'photo-1626776877737-2b14db717a72',
-    m19: 'photo-1626776877737-2b14db717a72',
-    m20: 'photo-1626776877737-2b14db717a72',
-    m21: 'photo-1551024506-0bccd828d307',
-    m22: 'photo-1551024506-0bccd828d307',
-    m23: 'photo-1601050690597-df0568f70950',
-    m24: 'photo-1551024506-0bccd828d307',
-    m25: 'photo-1497636577773-f1231844b336',
-    m26: 'photo-1597318236330-edd0b2c8d62f',
-    m27: 'photo-1623065422902-30a2d299bbe4',
-    m28: 'photo-1546171753-97d7676e4602',
-  };
-  return map[m.id] || 'photo-1414235077428-338989a2e8c0';
-}
+    </div>
+  </section>
+);
 
 // ───────────── Place / About chapter ─────────────
 const PlaceSection = () => (
   <section className="section">
     <SectionHead
-      num="— 03"
+      num="— 04"
       kicker="The Place"
       title={<>A small, <span className="italic">walkable</span> city.</>}
     />
@@ -447,78 +551,223 @@ const GallerySection = () => (
   </section>
 );
 
-// ───────────── Cart drawer ─────────────
-const CartDrawer = ({ open, onClose, cart, items, inc, dec }) => {
-  const lines = Object.entries(cart)
-    .filter(([, qty]) => qty > 0)
-    .map(([id, qty]) => ({ ...items.find((m) => m.id === id), qty }));
-  const total = lines.reduce((s, l) => s + l.price * l.qty, 0);
+// ───────────── Banquets ─────────────
+const BanquetsSection = () => (
+  <section className="section">
+    <SectionHead
+      num="— 05"
+      kicker="Events & Banquets"
+      title={<>Three halls. <span className="italic">One kitchen.</span></>}
+      lead="From a boardroom of 30 to a wedding of 800. Jade, Olive, and Ruby — each hall catered by our in-house kitchens."
+    />
 
-  return (
-    <>
-      <div className={`drawer-back ${open ? 'open' : ''}`} onClick={onClose} />
-      <aside className={`drawer ${open ? 'open' : ''}`}>
-        <div className="drawer-head">
-          <div>
-            <div className="eyebrow">Your order</div>
-            <div className="h-card" style={{ marginTop: 4 }}>To Room 204</div>
+    <div className="banquet-halls">
+      {BANQUETS_V2.map((hall) => (
+        <div className="banquet-card" key={hall.id}>
+          <div
+            className="banquet-img"
+            style={{ backgroundImage: `url(${hall.img})` }}
+          >
+            {hall.ac && (
+              <div className="banquet-badge ac">Centralised AC</div>
+            )}
+            <div className="banquet-size">{hall.size}</div>
           </div>
-          <button className="iconbtn" onClick={onClose}>{Ico.close}</button>
-        </div>
-        <div className="drawer-body">
-          {lines.length === 0 ? (
-            <div className="cart-empty">
-              <div style={{ fontSize: 40, color: 'var(--gold)' }}>{Ico.bag}</div>
-              <div className="h-card">Cart is empty</div>
-              <p className="muted">Browse the menu — tap + to add a dish.</p>
+          <div className="banquet-body">
+            <div className="eyebrow">{hall.capacityNote}</div>
+            <h3 className="h-card" style={{ marginTop: '0.35rem', marginBottom: '0.5rem' }}>{hall.name}</h3>
+            <p className="muted" style={{ fontSize: 13, lineHeight: 1.5 }}>{hall.desc}</p>
+            <div className="banquet-tags">
+              {hall.tags.map((t) => (
+                <span className="banquet-tag" key={t}>{t}</span>
+              ))}
             </div>
-          ) : (
-            lines.map((l) => (
-              <div key={l.id} className="cart-row">
-                <div
-                  className="img"
-                  style={{ backgroundImage: `url(https://images.unsplash.com/${getDishImage(l)}?w=200&q=80)` }}
-                />
-                <div>
-                  <div className="name">{l.name}</div>
-                  <div className="qty">
-                    <button onClick={() => dec(l.id)}>−</button>
-                    <span>{l.qty}</span>
-                    <button onClick={() => inc(l.id)}>+</button>
-                  </div>
-                </div>
-                <div style={{ fontFamily: 'var(--serif)', color: 'var(--maroon)' }}>
-                  ₹{(l.price * l.qty).toLocaleString()}
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-        {lines.length > 0 && (
-          <div className="drawer-foot">
-            <div className="split" style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ink-soft)' }}>
-              <span>Subtotal</span><span>₹{total.toLocaleString()}</span>
-            </div>
-            <div className="split" style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ink-soft)' }}>
-              <span>Service · 10%</span><span>₹{Math.round(total * 0.1).toLocaleString()}</span>
-            </div>
-            <hr className="rule" />
-            <div className="split">
-              <span className="h-card" style={{ fontSize: '1rem' }}>Total</span>
-              <span className="h-card" style={{ fontSize: '1.4rem' }}>₹{Math.round(total * 1.1).toLocaleString()}</span>
-            </div>
-            <button className="btn btn-maroon" style={{ width: '100%' }}>
-              Send to kitchen {Ico.arrow}
-            </button>
-            <p className="muted" style={{ fontSize: 11, textAlign: 'center', marginTop: 4 }}>
-              Charged to your room. Delivery in ~25 min.
-            </p>
           </div>
-        )}
-      </aside>
-    </>
-  );
-};
+        </div>
+      ))}
+    </div>
+
+    <div className="banquet-combine">
+      <div className="eyebrow" style={{ marginBottom: '0.5rem' }}>Combined booking</div>
+      <h3 className="h-card" style={{ marginBottom: '0.6rem' }}>
+        Olive + Ruby — <span className="italic">up to 800 guests</span>
+      </h3>
+      <p className="muted" style={{ maxWidth: '56ch', fontSize: 14, lineHeight: 1.6 }}>
+        Open the partition between Olive and Ruby for a single 10,000 sq ft hall.
+        Centralized air conditioning throughout. In-house catering. One team, one bill.
+      </p>
+      <a
+        href="tel:+918462240000"
+        className="btn btn-maroon"
+        style={{ marginTop: '1.25rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}
+      >
+        Call to enquire {Ico.arrow}
+      </a>
+    </div>
+  </section>
+);
+
+// ───────────── Business Travellers ─────────────
+const BIZ_AMENITIES = [
+  {
+    ico: 'sun',
+    title: 'High-speed Wi-Fi',
+    body: 'Throughout the hotel — rooms, lobby, restaurant, and banquet spaces. No codes, no limits, no throttling.',
+  },
+  {
+    ico: 'home',
+    title: 'Free parking',
+    body: 'Covered parking for your own vehicle or a hired cab. Arrange pickup from the station or highway directly with reception.',
+  },
+  {
+    ico: 'bread',
+    title: 'Breakfast included',
+    body: 'Full breakfast served 8:00–10:30 am in Telugu Theory. Early risers can request tea and light snacks from 7:00 am.',
+  },
+  {
+    ico: 'cup',
+    title: '503 Coffeeshop · Level 1',
+    body: 'Single-origin coffee, craft tea, and a quiet table for an informal meeting or a laptop session. Open 8 am to 11 pm.',
+  },
+  {
+    ico: 'fork',
+    title: 'Client meals at Telugu Theory',
+    body: 'Andhra and Telangana cuisine on Level 2 — lunch from 12:00 and dinner until 23:00. A reliable table for a working meal.',
+  },
+  {
+    ico: 'leaf',
+    title: 'Jade Hall for team meetings',
+    body: '1,000 sq ft meeting room with capacity for 80–100. Ideal for training sessions, workshops, and small conferences. Catered in-house.',
+  },
+];
+
+const BIZ_INDUSTRIES = [
+  { label: 'Turmeric trade', detail: "Nizamabad hosts Asia's largest turmeric exchange. Brokers, exporters, and buyers from across India pass through year-round." },
+  { label: 'Seed industry', detail: 'One of Telangana\'s primary seed production and distribution hubs. Agri-input companies maintain regional offices here.' },
+  { label: 'Pharma & chemicals', detail: 'On the edge of Telangana\'s pharmaceutical corridor. Sales teams, auditors, and supply-chain managers are regular guests.' },
+  { label: 'Government contracts', detail: 'District headquarters for Nizamabad. Government officials, contractors, and project teams on district and state assignments.' },
+  { label: 'Infrastructure', detail: 'Active construction and infrastructure projects in and around the district bring project managers and site supervisors for multi-week stays.' },
+  { label: 'FMCG & distribution', detail: 'A strong regional distribution network draws sales leads, regional managers, and brand representatives on monthly circuits.' },
+];
+
+const BusinessSection = () => (
+  <section className="section" id="business">
+    <SectionHead
+      num="— 06"
+      kicker="Business Travel"
+      title={<>The work stays <span className="italic">simple.</span></>}
+      lead="Nizamabad is a working city. Turmeric, seeds, pharmaceuticals, and government work bring professionals here every week. Amara is built for the stay in between."
+    />
+
+    {/* Amenities grid */}
+    <div className="biz-amenities">
+      {BIZ_AMENITIES.map((a) => (
+        <div key={a.title} style={{
+          background: 'var(--ivory-card)',
+          border: '1px solid var(--line)',
+          borderRadius: 14,
+          padding: '1.25rem',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '0.6rem',
+        }}>
+          <div style={{
+            background: 'var(--maroon)', color: 'var(--gold)',
+            borderRadius: 10, padding: '0.6rem',
+            width: 40, height: 40,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}>
+            {Ico[a.ico]}
+          </div>
+          <h3 className="h-card" style={{ fontSize: '1rem', marginTop: '0.15rem' }}>{a.title}</h3>
+          <p className="muted" style={{ fontSize: 13, lineHeight: 1.55, margin: 0 }}>{a.body}</p>
+        </div>
+      ))}
+    </div>
+
+    {/* What brings business here */}
+    <div style={{
+      marginTop: '2.5rem',
+      background: 'var(--bone)',
+      border: '1px solid var(--line-gold)',
+      borderRadius: 16,
+      padding: '1.75rem 1.5rem',
+    }}>
+      <div className="eyebrow" style={{ marginBottom: '1rem' }}>What brings business to Nizamabad</div>
+      <div className="biz-industries">
+        {BIZ_INDUSTRIES.map((ind) => (
+          <div key={ind.label} style={{ padding: '0.85rem 0', borderBottom: '1px solid var(--line)' }}>
+            <div style={{
+              fontFamily: 'var(--serif)',
+              fontSize: '1.05rem',
+              color: 'var(--maroon)',
+              marginBottom: '0.3rem',
+              letterSpacing: '-0.005em',
+            }}>{ind.label}</div>
+            <p className="muted" style={{ fontSize: 13, lineHeight: 1.55, margin: 0 }}>{ind.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Jade Hall call-out */}
+    <div style={{
+      marginTop: '2rem',
+      background: 'var(--maroon)',
+      color: 'var(--ivory)',
+      borderRadius: 16,
+      padding: '1.75rem 1.5rem',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '1rem',
+    }}>
+      <div>
+        <div className="eyebrow eyebrow-light" style={{ marginBottom: '0.5rem' }}>Day-use meeting space</div>
+        <h3 className="h-card" style={{ color: 'var(--ivory)', fontSize: '1.4rem', marginBottom: '0.6rem' }}>
+          Jade Hall — <span className="italic">up to 100 guests</span>
+        </h3>
+        <p style={{ fontSize: 14, color: 'rgba(244,234,215,0.78)', lineHeight: 1.6, maxWidth: '52ch', margin: 0 }}>
+          A 1,000 sq ft meeting room available for day-hire or multi-day conference use.
+          In-house catering for tea breaks, working lunches, and dinner. AV setup on request.
+          Ideal for training workshops, team offsites, vendor meetings, and corporate seminars.
+        </p>
+      </div>
+      <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', paddingTop: '0.5rem', borderTop: '1px solid rgba(244,234,215,0.15)' }}>
+        <a href="tel:+918462240000" className="btn btn-gold" style={{ textDecoration: 'none' }}>
+          Enquire about Jade Hall {Ico.arrow}
+        </a>
+        <a href="#rooms" className="btn btn-outline-light" style={{ textDecoration: 'none' }}>
+          Book rooms for your team {Ico.arrow}
+        </a>
+      </div>
+    </div>
+
+    {/* Corporate rate strip */}
+    <div style={{
+      marginTop: '1.25rem',
+      padding: '1.1rem 1.25rem',
+      border: '1px solid var(--line-gold)',
+      borderRadius: 12,
+      background: 'var(--paper)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      gap: '1rem',
+      flexWrap: 'wrap',
+    }}>
+      <div>
+        <div className="eyebrow" style={{ marginBottom: '0.3rem' }}>Corporate & extended stay rates</div>
+        <p className="muted" style={{ fontSize: 13, margin: 0, lineHeight: 1.5 }}>
+          Negotiated rates available for companies with recurring travel to Nizamabad.
+          Monthly billing, priority room allocation, and dedicated account contact.
+        </p>
+      </div>
+      <a href="mailto:stay@amara.in" className="btn btn-maroon" style={{ textDecoration: 'none', whiteSpace: 'nowrap' }}>
+        Ask about rates {Ico.arrow}
+      </a>
+    </div>
+  </section>
+);
 
 // ───────────── Footer ─────────────
 const Footer = () => (
@@ -535,48 +784,59 @@ const Footer = () => (
         </svg>
       </div>
       <p style={{ maxWidth: '38ch', color: 'rgba(244,234,215,0.75)', fontFamily: 'var(--serif)', fontSize: '1.1rem', lineHeight: 1.4 }}>
-        A boutique hotel and dining room. Twelve rooms, one long table, the slow side of Telangana.
+        34 rooms, three banquet halls, a Telangana kitchen on Level 2, and a coffeeshop on Level 1.
       </p>
+    </div>
+
+    {/* Sister properties strip */}
+    <div className="footer-venues">
+      <div className="eyebrow" style={{ marginBottom: '0.75rem', color: 'rgba(207,148,79,0.7)' }}>Also at Amara</div>
+      <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+        <a href="https://five-zero-three.vercel.app" target="_blank" rel="noopener" className="venue-pill">
+          503 Coffeeshop · Level 1
+        </a>
+        <a href="https://telugu-theory.vercel.app" target="_blank" rel="noopener" className="venue-pill">
+          Telugu Theory · Level 2
+        </a>
+      </div>
     </div>
 
     <div className="grid">
       <div>
         <h4>Visit</h4>
         <p style={{ fontFamily: 'var(--serif)', fontSize: '1.05rem', color: 'rgba(244,234,215,0.85)', margin: 0, lineHeight: 1.5 }}>
-          12 Khilwat Road<br/>
           Nizamabad, TG 503001<br/>
-          India
+          Telangana, India
         </p>
       </div>
       <div>
         <h4>Reach</h4>
         <ul>
-          <li><a href="#">+91 8462 24 0000</a></li>
-          <li><a href="#">stay@amara.in</a></li>
+          <li><a href="tel:+918462240000">+91 8462 24 0000</a></li>
+          <li><a href="mailto:stay@amara.in">stay@amara.in</a></li>
           <li><a href="#">@amara.nizamabad</a></li>
         </ul>
       </div>
       <div>
         <h4>Stay</h4>
         <ul>
-          <li><a href="#">Rooms</a></li>
-          <li><a href="#">Suites</a></li>
-          <li><a href="#">Residence</a></li>
-          <li><a href="#">Concierge</a></li>
+          <li><a href="#rooms">Standard · ₹3,000</a></li>
+          <li><a href="#rooms">Deluxe · ₹3,300</a></li>
+          <li><a href="#rooms">Suite · ₹4,750</a></li>
         </ul>
       </div>
       <div>
-        <h4>Table</h4>
+        <h4>Events</h4>
         <ul>
-          <li><a href="#">Menu</a></li>
-          <li><a href="#">Private dining</a></li>
-          <li><a href="#">Cooking class</a></li>
+          <li><a href="#events">Jade Hall · 100 pax</a></li>
+          <li><a href="#events">Olive Hall · 400 pax</a></li>
+          <li><a href="#events">Ruby Hall · 400 pax</a></li>
         </ul>
       </div>
     </div>
 
     <div className="legal">
-      <span>© 2026 Amara Hotels Pvt. Ltd.</span>
+      <span>© 2026 Amara · Nizamabad</span>
       <span>Privacy · Terms · Accessibility</span>
     </div>
   </footer>
@@ -594,8 +854,8 @@ const BottomNav = ({ active, onNav }) => (
     <button className={active === 'dine' ? 'active' : ''} onClick={() => onNav('dine')}>
       {Ico.fork}<span>Dine</span>
     </button>
-    <button className={active === 'gallery' ? 'active' : ''} onClick={() => onNav('gallery')}>
-      {Ico.grid}<span>Gallery</span>
+    <button className={active === 'events' ? 'active' : ''} onClick={() => onNav('events')}>
+      {Ico.leaf}<span>Events</span>
     </button>
     <button className={active === 'about' ? 'active' : ''} onClick={() => onNav('about')}>
       {Ico.user}<span>About</span>
@@ -614,8 +874,8 @@ const BrandBar = ({ active, onNav }) => (
       <a href="#home" className={active === 'home' ? 'active' : ''} onClick={(e)=>{e.preventDefault();onNav('home');}}>Home</a>
       <a href="#rooms" className={active === 'rooms' ? 'active' : ''} onClick={(e)=>{e.preventDefault();onNav('rooms');}}>Rooms</a>
       <a href="#dine" className={active === 'dine' ? 'active' : ''} onClick={(e)=>{e.preventDefault();onNav('dine');}}>Restaurant</a>
+      <a href="#events" className={active === 'events' ? 'active' : ''} onClick={(e)=>{e.preventDefault();onNav('events');}}>Events</a>
       <a href="#about" className={active === 'about' ? 'active' : ''} onClick={(e)=>{e.preventDefault();onNav('about');}}>About</a>
-      <a href="#gallery" className={active === 'gallery' ? 'active' : ''} onClick={(e)=>{e.preventDefault();onNav('gallery');}}>Gallery</a>
     </nav>
     <button className="btn btn-maroon btn-sm header-cta" onClick={() => onNav('home')}>
       Book a Stay
@@ -636,7 +896,7 @@ const AppV2 = () => {
 
   // observe sections to update bottom-nav active state
   React.useEffect(() => {
-    const ids = ['home', 'rooms', 'dine', 'about', 'gallery'];
+    const ids = ['home', 'rooms', 'dine', 'basara', 'events', 'business', 'about', 'gallery'];
     const opts = { threshold: 0.4 };
     const obs = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
@@ -668,6 +928,18 @@ const AppV2 = () => {
 
         <div id="dine">
           <DineSection />
+        </div>
+
+        <div id="basara">
+          <BasaraSection />
+        </div>
+
+        <div id="events">
+          <BanquetsSection />
+        </div>
+
+        <div id="business">
+          <BusinessSection />
         </div>
 
         <div id="about">

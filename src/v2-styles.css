@@ -36,7 +36,7 @@
 }
 
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
+html, body { margin: 0; padding: 0; overflow-x: hidden; }
 html { scroll-behavior: smooth; }
 body {
   font-family: var(--sans);
@@ -46,6 +46,7 @@ body {
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  width: 100%;
 }
 button { font: inherit; cursor: pointer; background: none; border: 0; color: inherit; padding: 0; }
 input, select, textarea { font: inherit; color: inherit; }
@@ -122,6 +123,9 @@ img { max-width: 100%; display: block; }
   min-height: 100vh;
   padding-bottom: 76px;     /* room for bottom nav */
   background: var(--paper);
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 /* Top brand bar */
@@ -138,7 +142,7 @@ img { max-width: 100%; display: block; }
   display: flex; align-items: center; gap: 0.65rem;
   color: var(--maroon);
 }
-.brandbar .mark img { height: 32px; width: auto; }
+.brandbar .mark img { height: 44px; width: auto; }
 .brandbar .mark .place {
   font-family: var(--mono);
   font-size: 10px;
@@ -1051,7 +1055,7 @@ img { max-width: 100%; display: block; }
   .brandbar {
     padding: 1.4rem var(--pad-x);
   }
-  .brandbar .mark img { height: 44px; }
+  .brandbar .mark img { height: 56px; }
   .brandbar .mark .place {
     font-size: 11px;
     letter-spacing: 0.26em;
@@ -1100,4 +1104,165 @@ img { max-width: 100%; display: block; }
 /* Hide bottom nav on mobile only — bottom nav appears only on small screens */
 @media (max-width: 1023px) {
   .brandbar nav { display: none; }
+}
+
+/* ─────────────────────────────────────────────────────── */
+/* BANQUETS SECTION                                        */
+/* ─────────────────────────────────────────────────────── */
+.banquet-halls {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.banquet-card {
+  background: var(--ivory-card);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.banquet-img {
+  aspect-ratio: 16/9;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0.75rem;
+  gap: 0.5rem;
+}
+
+.banquet-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.banquet-badge.ac {
+  background: rgba(45, 58, 26, 0.88);
+  color: #a8d08d;
+  backdrop-filter: blur(4px);
+}
+
+.banquet-size {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(80, 20, 30, 0.85);
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  backdrop-filter: blur(4px);
+}
+
+.banquet-body {
+  padding: 1.1rem 1.25rem 1.4rem;
+}
+
+.banquet-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+}
+
+.banquet-tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-soft);
+  letter-spacing: 0.06em;
+}
+
+.banquet-combine {
+  margin-top: 2.5rem;
+  padding: 1.75rem 1.5rem;
+  background: var(--maroon);
+  color: var(--ivory);
+  border-radius: 16px;
+}
+
+.banquet-combine .eyebrow { color: var(--gold-light); }
+.banquet-combine .h-card { color: var(--ivory); }
+.banquet-combine .muted { color: rgba(244, 234, 215, 0.7); }
+
+/* Footer venues strip */
+.footer-venues {
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(244, 234, 215, 0.15);
+}
+
+.venue-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(207, 148, 79, 0.45);
+  color: var(--gold-light);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.venue-pill:hover {
+  background: rgba(207, 148, 79, 0.15);
+  color: var(--ivory);
+}
+
+@media (min-width: 768px) {
+  .banquet-halls {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .banquet-img { aspect-ratio: 4/3; }
+  .banquet-combine {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+}
+
+/* ─────────────────────────────────────────────────────── */
+/* BASARA — reason cards responsive grid                   */
+/* ─────────────────────────────────────────────────────── */
+.basara-reasons { display: grid; gap: 0.85rem; }
+@media (min-width: 720px) {
+  .basara-reasons { grid-template-columns: 1fr 1fr; }
+}
+
+/* ─────────────────────────────────────────────────────── */
+/* BUSINESS — amenities + industry grids                   */
+/* ─────────────────────────────────────────────────────── */
+.biz-amenities {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  margin-top: 0.25rem;
+}
+.biz-industries {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+@media (min-width: 720px) {
+  .biz-amenities { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .biz-industries { grid-template-columns: 1fr 1fr; column-gap: 2.5rem; }
+}
+@media (min-width: 1024px) {
+  .biz-amenities { grid-template-columns: repeat(3, 1fr); }
 }
