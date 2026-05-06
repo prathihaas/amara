@@ -833,6 +833,15 @@ const Footer = () => (
           <li><a href="#events">Ruby Hall · 400 pax</a></li>
         </ul>
       </div>
+      <div>
+        <h4>Journal</h4>
+        <ul>
+          <li><a href="blog/">All Articles</a></li>
+          <li><a href="blog/hotels-near-basara-temple.html">Basara Temple Guide</a></li>
+          <li><a href="blog/nizamabad-travel-guide.html">Nizamabad Guide</a></li>
+          <li><a href="blog/business-hotels-nizamabad.html">Business Travel</a></li>
+        </ul>
+      </div>
     </div>
 
     <div className="legal">
@@ -876,6 +885,7 @@ const BrandBar = ({ active, onNav }) => (
       <a href="#dine" className={active === 'dine' ? 'active' : ''} onClick={(e)=>{e.preventDefault();onNav('dine');}}>Restaurant</a>
       <a href="#events" className={active === 'events' ? 'active' : ''} onClick={(e)=>{e.preventDefault();onNav('events');}}>Events</a>
       <a href="#about" className={active === 'about' ? 'active' : ''} onClick={(e)=>{e.preventDefault();onNav('about');}}>About</a>
+      <a href="blog/" style={{ color: 'var(--maroon)', fontWeight: 600 }}>Blog</a>
     </nav>
     <button className="btn btn-maroon btn-sm header-cta" onClick={() => onNav('home')}>
       Book a Stay
